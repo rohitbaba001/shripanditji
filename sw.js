@@ -8,26 +8,26 @@
  */
 
 // Import CacheManager (for service worker context)
-importScripts('/cache-manager.min.js');
+importScripts('/shripanditji/cache-manager.min.js');
 
 // Cache version constant
 const CACHE_VERSION = '1.0.0';
 
 // App shell cache - static assets to cache on install
 const APP_SHELL_CACHE = [
-  '/',
-  '/index.html',
-  '/offline.html',
-  '/styles.min.css',
-  '/manifest.json',
-  '/icons/icon-16x16.svg',
-  '/icons/icon-32x32.svg',
-  '/icons/icon-48x48.svg',
-  '/icons/icon-180x180.svg',
-  '/icons/icon-192x192.svg',
-  '/icons/icon-512x512.svg',
-  '/icons/icon-192x192-maskable.svg',
-  '/icons/icon-512x512-maskable.svg'
+  '/shripanditji/',
+  '/shripanditji/index.html',
+  '/shripanditji/offline.html',
+  '/shripanditji/styles.min.css',
+  '/shripanditji/manifest.json',
+  '/shripanditji/icons/icon-16x16.svg',
+  '/shripanditji/icons/icon-32x32.svg',
+  '/shripanditji/icons/icon-48x48.svg',
+  '/shripanditji/icons/icon-180x180.svg',
+  '/shripanditji/icons/icon-192x192.svg',
+  '/shripanditji/icons/icon-512x512.svg',
+  '/shripanditji/icons/icon-192x192-maskable.svg',
+  '/shripanditji/icons/icon-512x512-maskable.svg'
 ];
 
 // Initialize cache manager
@@ -196,7 +196,7 @@ async function networkFirst(request) {
     
     // Not in cache either, serve offline page
     console.log('[Service Worker] Not in cache, serving offline page');
-    const offlineResponse = await cache.match('/offline.html');
+    const offlineResponse = await cache.match('/shripanditji/offline.html');
     
     if (offlineResponse) {
       return offlineResponse;
@@ -339,7 +339,7 @@ self.addEventListener('fetch', (event) => {
         // Serve offline fallback page on error
         const cacheName = cacheManager.getCacheName();
         const cache = await caches.open(cacheName);
-        const offlineResponse = await cache.match('/offline.html');
+        const offlineResponse = await cache.match('/shripanditji/offline.html');
         
         if (offlineResponse) {
           return offlineResponse;

@@ -38,7 +38,9 @@ function initApp() {
 async function registerServiceWorker() {
   try {
     // Register /sw.min.js
-    const registration = await navigator.serviceWorker.register('/sw.min.js');
+    const registration = await navigator.serviceWorker.register('/shripanditji/sw.min.js', {
+      scope: '/shripanditji/'
+    });
     
     console.log('Service Worker registered successfully:', registration.scope);
     
