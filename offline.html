@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#FF6B35">
+  <title>Offline - Shri Pandit Ji</title>
+  
+  <style>
+    /* Minimal inline CSS for offline page */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-text-size-adjust: none;
+      text-size-adjust: none;
+    }
+    
+    .offline-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    
+    .logo {
+      width: 120px;
+      height: 120px;
+      margin-bottom: 2rem;
+      background-color: #FF6B35;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+    }
+    
+    .logo svg {
+      width: 70px;
+      height: 70px;
+      fill: white;
+    }
+    
+    .branding {
+      margin-bottom: 2rem;
+    }
+    
+    .branding h1 {
+      font-size: 1.75rem;
+      color: #FF6B35;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    
+    .branding p {
+      font-size: 0.875rem;
+      color: #666;
+    }
+    
+    .offline-message {
+      margin-bottom: 2rem;
+    }
+    
+    .offline-message h2 {
+      font-size: 1.5rem;
+      color: #333;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    
+    .offline-message p {
+      font-size: 1rem;
+      color: #666;
+      line-height: 1.6;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    
+    .cached-pages {
+      margin: 2rem 0;
+      width: 100%;
+      max-width: 500px;
+    }
+    
+    .cached-pages h3 {
+      font-size: 1.125rem;
+      color: #333;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    
+    #cached-pages-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    #cached-pages-list li {
+      background-color: white;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      margin-bottom: 0.5rem;
+      text-align: left;
+    }
+    
+    #cached-pages-list li a {
+      color: #FF6B35;
+      text-decoration: none;
+      font-size: 0.9375rem;
+      display: block;
+      min-width: 44px;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+    }
+    
+    #cached-pages-list li a:hover {
+      text-decoration: underline;
+    }
+    
+    #cached-pages-list li a:focus {
+      outline: 2px solid #FF6B35;
+      outline-offset: 2px;
+    }
+    
+    .empty-cache-message {
+      color: #999;
+      font-size: 0.9375rem;
+      font-style: italic;
+    }
+    
+    .retry-button {
+      background-color: #FF6B35;
+      color: white;
+      border: none;
+      padding: 14px 32px;
+      border-radius: 24px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      min-width: 44px;
+      min-height: 44px;
+      transition: transform 0.1s ease, box-shadow 0.2s ease;
+    }
+    
+    .retry-button:hover {
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+    
+    .retry-button:active {
+      transform: scale(0.95);
+    }
+    
+    .retry-button:focus {
+      outline: 2px solid #ffffff;
+      outline-offset: 2px;
+      box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.3);
+    }
+    
+    footer {
+      background-color: #f5f5f5;
+      padding: 1rem;
+      text-align: center;
+      font-size: 0.875rem;
+      color: #666;
+      border-top: 1px solid #e0e0e0;
+    }
+    
+    /* Responsive adjustments */
+    @media (min-width: 768px) {
+      .logo {
+        width: 150px;
+        height: 150px;
+      }
+      
+      .logo svg {
+        width: 90px;
+        height: 90px;
+      }
+      
+      .branding h1 {
+        font-size: 2rem;
+      }
+      
+      .offline-message h2 {
+        font-size: 1.75rem;
+      }
+      
+      .offline-message p {
+        font-size: 1.125rem;
+      }
+      
+      .retry-button {
+        padding: 16px 40px;
+        font-size: 1.125rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="offline-container">
+    <!-- App Branding and Logo -->
+    <div class="logo" aria-label="Shri Pandit Ji Logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+      </svg>
+    </div>
+    
+    <div class="branding">
+      <h1>Shri Pandit Ji</h1>
+      <p>Spiritual Guidance & Astrological Consultations</p>
+    </div>
+    
+    <!-- Offline Message -->
+    <div class="offline-message">
+      <h2>You are offline</h2>
+      <p>It looks like you've lost your internet connection. Please check your network settings and try again.</p>
+    </div>
+    
+    <!-- Cached Pages List -->
+    <div class="cached-pages">
+      <h3>Available Cached Pages</h3>
+      <ul id="cached-pages-list">
+        <li class="empty-cache-message">No cached pages available</li>
+      </ul>
+    </div>
+    
+    <!-- Retry Button -->
+    <button class="retry-button" onclick="retryConnection()" aria-label="Retry Connection">
+      Retry Connection
+    </button>
+  </div>
+  
+  <footer>
+    <p>&copy; 2026 Shri Pandit Ji. All rights reserved.</p>
+  </footer>
+  
+  <script>
+    // Populate cached pages list
+    async function loadCachedPages() {
+      try {
+        if ('caches' in window) {
+          const cacheNames = await caches.keys();
+          const cachedUrls = new Set();
+          
+          for (const cacheName of cacheNames) {
+            const cache = await caches.open(cacheName);
+            const requests = await cache.keys();
+            
+            requests.forEach(request => {
+              const url = new URL(request.url);
+              // Only show HTML pages, exclude service worker and assets
+              if (url.pathname.endsWith('.html') || url.pathname === '/') {
+                cachedUrls.add({
+                  url: request.url,
+                  pathname: url.pathname === '/' ? 'Home' : url.pathname
+                });
+              }
+            });
+          }
+          
+          const listElement = document.getElementById('cached-pages-list');
+          
+          if (cachedUrls.size > 0) {
+            listElement.innerHTML = '';
+            cachedUrls.forEach(page => {
+              const li = document.createElement('li');
+              const a = document.createElement('a');
+              a.href = page.url;
+              a.textContent = page.pathname;
+              li.appendChild(a);
+              listElement.appendChild(li);
+            });
+          }
+        }
+      } catch (error) {
+        console.error('Error loading cached pages:', error);
+      }
+    }
+    
+    // Retry connection function
+    function retryConnection() {
+      // Check if online
+      if (navigator.onLine) {
+        // Try to reload the page
+        window.location.reload();
+      } else {
+        // Still offline, show message
+        alert('You are still offline. Please check your internet connection.');
+      }
+    }
+    
+    // Load cached pages on page load
+    loadCachedPages();
+    
+    // Listen for online event
+    window.addEventListener('online', () => {
+      // Automatically reload when connection is restored
+      window.location.reload();
+    });
+  </script>
+</body>
+</html>

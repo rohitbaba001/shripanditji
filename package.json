@@ -1,0 +1,31 @@
+{
+  "name": "shripanditji-pwa",
+  "version": "1.0.0",
+  "description": "Progressive Web App for Shri Pandit Ji website",
+  "main": "index.html",
+  "scripts": {
+    "dev": "http-server -S -C cert.pem -K key.pem -p 8443",
+    "test": "vitest --run",
+    "test:watch": "vitest",
+    "generate-cert": "openssl req -newkey rsa:2048 -new -nodes -x509 -days 365 -keyout key.pem -out cert.pem -subj \"/C=US/ST=State/L=City/O=Organization/CN=localhost\"",
+    "minify:css": "cleancss -o styles.min.css styles.css",
+    "minify:js": "terser install-manager.js -c -m -o install-manager.min.js && terser cache-manager.js -c -m -o cache-manager.min.js && terser app.js -c -m -o app.min.js && terser sw.js -c -m -o sw.min.js",
+    "minify": "npm run minify:css && npm run minify:js"
+  },
+  "keywords": [
+    "pwa",
+    "progressive-web-app",
+    "service-worker",
+    "offline"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "clean-css-cli": "^5.6.3",
+    "fast-check": "^3.15.0",
+    "http-server": "^14.1.1",
+    "jsdom": "^24.0.0",
+    "terser": "^5.46.0",
+    "vitest": "^1.2.0"
+  }
+}

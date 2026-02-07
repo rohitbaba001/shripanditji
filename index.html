@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#FF6B35">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="description" content="Shri Pandit Ji - Your trusted source for spiritual guidance, puja services, and astrological consultations">
+  
+  <title>Shri Pandit Ji</title>
+  
+  <!-- Manifest -->
+  <link rel="manifest" href="/manifest.json">
+  
+  <!-- Favicons -->
+  <link rel="icon" type="image/svg+xml" sizes="16x16" href="/icons/icon-16x16.svg">
+  <link rel="icon" type="image/svg+xml" sizes="32x32" href="/icons/icon-32x32.svg">
+  <link rel="icon" type="image/svg+xml" sizes="48x48" href="/icons/icon-48x48.svg">
+  
+  <!-- Apple Touch Icon -->
+  <link rel="apple-touch-icon" href="/icons/icon-180x180.svg">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="/styles.min.css">
+  
+  <style>
+    /* Critical CSS - Inline for fast rendering */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      overflow-x: hidden;
+      -webkit-text-size-adjust: none;
+      text-size-adjust: none;
+    }
+    
+    .app-shell {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    
+    header {
+      background-color: #FF6B35;
+      color: white;
+      padding: 1rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    header h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    
+    main {
+      flex: 1;
+      position: relative;
+      width: 100%;
+    }
+    
+    #content-frame {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+      min-height: calc(100vh - 60px - 50px);
+    }
+    
+    footer {
+      background-color: #f5f5f5;
+      padding: 1rem;
+      text-align: center;
+      font-size: 0.875rem;
+      color: #666;
+    }
+    
+    #install-button {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #FF6B35;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 24px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      z-index: 1000;
+      min-width: 44px;
+      min-height: 44px;
+    }
+    
+    #install-button:active {
+      transform: scale(0.95);
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <header>
+      <h1>Shri Pandit Ji</h1>
+    </header>
+    
+    <main>
+      <iframe 
+        id="content-frame" 
+        src="https://shripanditji.in/" 
+        title="Shri Pandit Ji Website"
+        loading="eager">
+      </iframe>
+    </main>
+    
+    <footer>
+      <p>&copy; 2026 Shri Pandit Ji. All rights reserved.</p>
+    </footer>
+  </div>
+  
+  <button id="install-button" aria-label="Install App">
+    Install App
+  </button>
+  
+  <!-- Load InstallManager first -->
+  <script src="/install-manager.min.js" defer></script>
+  
+  <!-- Load main application script -->
+  <script src="/app.min.js" defer></script>
+</body>
+</html>
